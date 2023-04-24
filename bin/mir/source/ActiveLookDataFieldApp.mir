@@ -1,0 +1,43 @@
+[ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc"; @line = 1; ]
+using Toybox.Application;
+[ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc"; @line = 3; typecheck = false; ]
+class ActiveLookDataFieldApp extends Application.AppBase{
+    [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc"; @line = 4; ]
+    <init> {
+    }
+    [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc"; @line = 4; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc"; @line = 6; ]
+    function initialize() as Void {
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_ActiveLookDataFieldApp_mc_6_26_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc" 7 8 ]
+        %tmp.2 = getv ? :AppBase;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_ActiveLookDataFieldApp_mc_6_26_stop:
+    }
+    [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc"; @line = 11; ]
+    function onStart(state) {
+    }
+    [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc"; @line = 15; ]
+    function onStop(state) {
+    }
+    //! Return the initial view of your application here
+    [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc"; @line = 19; ]
+    function getInitialView() {
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_ActiveLookDataFieldApp_mc_19_30_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc" 20 8 ]
+        %tmp.1 = newa 1;
+        %tmp.5 = getv ? :ActiveLookDataFieldView;
+        %tmp.2 = newc %tmp.5 ();
+        %tmp.6 = dup %tmp.1;
+        %tmp.7 = aputv %tmp.6 0 %tmp.2;
+        ret %tmp.7;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_ActiveLookDataFieldApp_mc_19_30_stop:
+    }
+}
+[ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/ActiveLookDataFieldApp.mc"; @line = 1; ]
+<init> {
+}

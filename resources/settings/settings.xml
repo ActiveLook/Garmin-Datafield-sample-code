@@ -1,0 +1,14 @@
+<settings>
+    <setting propertyKey="@Properties.glasses_name" title="@Strings.settings_glasses_name">
+        <settingConfig type="alphaNumeric" />
+    </setting>
+    <setting propertyKey="@Properties.screens" title="@Strings.settings_screens">
+        <settingConfig type="alphaNumeric" />
+    </setting>
+    <setting propertyKey="@Properties.run" title="@Strings.settings_run">
+        <settingConfig type="alphaNumeric" />
+    </setting>
+    <setting propertyKey="@Properties.bike" title="@Strings.settings_bike">
+        <settingConfig type="alphaNumeric" />
+    </setting>
+</settings>

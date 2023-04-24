@@ -1,0 +1,913 @@
+[ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 1; ]
+using Toybox.Activity;
+[ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 2; ]
+using Toybox.Lang;
+[ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 3; ]
+using Toybox.AntPlus;
+[ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 5; ]
+module ActiveLook {
+    [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 5; ]
+    <init> {
+    }
+    [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 7; ]
+    module Laps {
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 7; ]
+        <init> {
+        }
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 9; ]
+        function hasValue(object as Lang.Object, symbol as Lang.Symbol) as Lang.Boolean {
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_9_88_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 10 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_10_19_begin:
+            %tmp.2 = lgetv %object;
+            %tmp.4 = lgetv %symbol;
+            %tmp.5 = canhazplz %tmp.2 %tmp.4;
+            %tmp.6 = dup %tmp.5;
+            bf %tmp.6 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_10_40_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_10_40_true:
+            %tmp.8 = lgetv %object;
+            %tmp.10 = lgetv %symbol;
+            %tmp.11 = agetv %tmp.8 %tmp.10;
+            %tmp.12 = null;
+            %tmp.13 = ne %tmp.11 %tmp.12;
+            %tmp.14 = and %tmp.5 %tmp.13;
+            push %tmp.14;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_10_40_end:
+            %tmp.15 = phi [%tmp.6 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_10_19_begin] [%tmp.14 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_10_40_true] [%tmp.15 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_10_40_end];
+            ret %tmp.15;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_9_88_stop:
+        }
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 13; @position = 12; ]
+        var lapNumber as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 15; @position = 12; ]
+        var lapStartTotalHeartRate as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 16; @position = 12; ]
+        var lapStartTotalPower as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 17; @position = 12; ]
+        var lapStartTotalSpeed as Lang.Float = 0.0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 18; @position = 12; ]
+        var lapStartTotalCadence as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 19; @position = 12; ]
+        var lapStartTimerTime as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 20; @position = 12; ]
+        var lapStartElapsedDistance as Lang.Float = 0.0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 21; @position = 12; ]
+        var lapStartTotalAscent as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 22; @position = 12; ]
+        var lapStartTotalDescent as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 23; @position = 12; ]
+        var lapStartCalories as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 25; @position = 12; ]
+        var lapAverageHeartRate as Lang.Number or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 26; @position = 12; ]
+        var lapAveragePower as Lang.Number or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 27; @position = 12; ]
+        var lapAveragePace as Lang.Float or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 28; @position = 12; ]
+        var lapAverageSpeed as Lang.Float or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 29; @position = 12; ]
+        var lapAverageCadence as Lang.Number or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 30; @position = 12; ]
+        var lapAverageAscentSpeed as Lang.Float or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 31; @position = 12; ]
+        var lapTimerTime as Lang.Number or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 32; @position = 12; ]
+        var lapChrono as Lang.Array<Lang.Number> or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 33; @position = 12; ]
+        var lapElapsedDistance as Lang.Float or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 34; @position = 12; ]
+        var lapTotalAscent as Lang.Number or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 35; @position = 12; ]
+        var lapTotalDescent as Lang.Number or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 36; @position = 12; ]
+        var lapCalories as Lang.Number or Null = null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 38; @position = 12; ]
+        var __nbGroundContactTime as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 39; @position = 12; ]
+        var __totalGroundContactTime as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 40; @position = 12; ]
+        var lapAverageGroundContactTime as Lang.Float or Null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 42; @position = 12; ]
+        var __nbVerticalOscillation as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 43; @position = 12; ]
+        var __totalVerticalOscillation as Lang.Float = 0.0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 44; @position = 12; ]
+        var lapAverageVerticalOscillation as Lang.Float or Null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 46; @position = 12; ]
+        var __nbStepLength as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 47; @position = 12; ]
+        var __totalStepLength as Lang.Number = 0;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 48; @position = 12; ]
+        var lapAverageStepLength as Lang.Float or Null;
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 50; ]
+        function addLap(activityInfo as Activity.Info) as Void {
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_50_63_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 51 12 ]
+            %tmp.1 = getv self :lapNumber;
+            %tmp.2 = 1;
+            %tmp.3 = add %tmp.1 %tmp.2;
+            putv self :lapNumber dup %tmp.3;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 52 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_begin:
+            %tmp.4 = self;
+            %tmp.5 = getv function %tmp.4 :hasValue;
+            %tmp.7 = lgetv %activityInfo;
+            %tmp.9 = const :timerTime;
+            %tmp.10 = invoke %tmp.4 %tmp.5(%tmp.7, %tmp.9);
+            bf %tmp.10 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_true:
+            %tmp.11 = lgetv %activityInfo;
+            %tmp.12 = getv %tmp.11 :timerTime;
+            push %tmp.12;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_false:
+            %tmp.13 = 0;
+            push %tmp.13;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_end:
+            %tmp.14 = phi [%tmp.10 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_begin] [%tmp.12 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_true] [%tmp.13 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_false] [%tmp.14 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_52_32_end];
+            putv self :lapStartTimerTime %tmp.14;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 53 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_begin:
+            %tmp.15 = self;
+            %tmp.16 = getv function %tmp.15 :hasValue;
+            %tmp.18 = lgetv %activityInfo;
+            %tmp.20 = const :elapsedDistance;
+            %tmp.21 = invoke %tmp.15 %tmp.16(%tmp.18, %tmp.20);
+            bf %tmp.21 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_true:
+            %tmp.22 = lgetv %activityInfo;
+            %tmp.23 = getv %tmp.22 :elapsedDistance;
+            push %tmp.23;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_false:
+            %tmp.24 = 0.0;
+            push %tmp.24;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_end:
+            %tmp.25 = phi [%tmp.21 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_begin] [%tmp.23 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_true] [%tmp.24 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_false] [%tmp.25 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_53_38_end];
+            putv self :lapStartElapsedDistance %tmp.25;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 54 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_begin:
+            %tmp.26 = self;
+            %tmp.27 = getv function %tmp.26 :hasValue;
+            %tmp.29 = lgetv %activityInfo;
+            %tmp.31 = const :totalAscent;
+            %tmp.32 = invoke %tmp.26 %tmp.27(%tmp.29, %tmp.31);
+            bf %tmp.32 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_true:
+            %tmp.33 = lgetv %activityInfo;
+            %tmp.34 = getv %tmp.33 :totalAscent;
+            push %tmp.34;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_false:
+            %tmp.35 = 0;
+            push %tmp.35;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_end:
+            %tmp.36 = phi [%tmp.32 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_begin] [%tmp.34 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_true] [%tmp.35 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_false] [%tmp.36 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_54_34_end];
+            putv self :lapStartTotalAscent %tmp.36;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 55 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_begin:
+            %tmp.37 = self;
+            %tmp.38 = getv function %tmp.37 :hasValue;
+            %tmp.40 = lgetv %activityInfo;
+            %tmp.42 = const :totalDescent;
+            %tmp.43 = invoke %tmp.37 %tmp.38(%tmp.40, %tmp.42);
+            bf %tmp.43 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_true:
+            %tmp.44 = lgetv %activityInfo;
+            %tmp.45 = getv %tmp.44 :totalDescent;
+            push %tmp.45;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_false:
+            %tmp.46 = 0;
+            push %tmp.46;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_end:
+            %tmp.47 = phi [%tmp.43 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_begin] [%tmp.45 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_true] [%tmp.46 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_false] [%tmp.47 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_55_35_end];
+            putv self :lapStartTotalDescent %tmp.47;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 56 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_begin:
+            %tmp.48 = self;
+            %tmp.49 = getv function %tmp.48 :hasValue;
+            %tmp.51 = lgetv %activityInfo;
+            %tmp.53 = const :calories;
+            %tmp.54 = invoke %tmp.48 %tmp.49(%tmp.51, %tmp.53);
+            bf %tmp.54 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_true:
+            %tmp.55 = lgetv %activityInfo;
+            %tmp.56 = getv %tmp.55 :calories;
+            push %tmp.56;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_false:
+            %tmp.57 = 0;
+            push %tmp.57;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_end:
+            %tmp.58 = phi [%tmp.54 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_begin] [%tmp.56 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_true] [%tmp.57 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_false] [%tmp.58 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_56_31_end];
+            putv self :lapStartCalories %tmp.58;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 57 12 ]
+            %tmp.60 = getv ? :lapStartTimerTime;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_begin:
+            %tmp.61 = self;
+            %tmp.62 = getv function %tmp.61 :hasValue;
+            %tmp.64 = lgetv %activityInfo;
+            %tmp.66 = const :averageHeartRate;
+            %tmp.67 = invoke %tmp.61 %tmp.62(%tmp.64, %tmp.66);
+            bf %tmp.67 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_true:
+            %tmp.68 = lgetv %activityInfo;
+            %tmp.69 = getv %tmp.68 :averageHeartRate;
+            push %tmp.69;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_false:
+            %tmp.70 = 0;
+            push %tmp.70;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_end:
+            %tmp.71 = phi [%tmp.67 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_begin] [%tmp.69 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_true] [%tmp.70 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_false] [%tmp.71 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_57_58_end];
+            %tmp.72 = mul %tmp.60 %tmp.71;
+            putv self :lapStartTotalHeartRate %tmp.72;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 58 12 ]
+            %tmp.74 = getv ? :lapStartTimerTime;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_begin:
+            %tmp.75 = self;
+            %tmp.76 = getv function %tmp.75 :hasValue;
+            %tmp.78 = lgetv %activityInfo;
+            %tmp.80 = const :averagePower;
+            %tmp.81 = invoke %tmp.75 %tmp.76(%tmp.78, %tmp.80);
+            bf %tmp.81 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_true:
+            %tmp.82 = lgetv %activityInfo;
+            %tmp.83 = getv %tmp.82 :averagePower;
+            push %tmp.83;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_false:
+            %tmp.84 = 0;
+            push %tmp.84;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_end:
+            %tmp.85 = phi [%tmp.81 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_begin] [%tmp.83 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_true] [%tmp.84 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_false] [%tmp.85 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_58_54_end];
+            %tmp.86 = mul %tmp.74 %tmp.85;
+            putv self :lapStartTotalPower %tmp.86;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 59 12 ]
+            %tmp.88 = getv ? :lapStartTimerTime;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_begin:
+            %tmp.89 = self;
+            %tmp.90 = getv function %tmp.89 :hasValue;
+            %tmp.92 = lgetv %activityInfo;
+            %tmp.94 = const :averageSpeed;
+            %tmp.95 = invoke %tmp.89 %tmp.90(%tmp.92, %tmp.94);
+            bf %tmp.95 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_true:
+            %tmp.96 = lgetv %activityInfo;
+            %tmp.97 = getv %tmp.96 :averageSpeed;
+            push %tmp.97;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_false:
+            %tmp.98 = 0.0;
+            push %tmp.98;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_end:
+            %tmp.99 = phi [%tmp.95 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_begin] [%tmp.97 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_true] [%tmp.98 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_false] [%tmp.99 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_59_54_end];
+            %tmp.100 = mul %tmp.88 %tmp.99;
+            putv self :lapStartTotalSpeed %tmp.100;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 60 12 ]
+            %tmp.102 = getv ? :lapStartTimerTime;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_begin:
+            %tmp.103 = self;
+            %tmp.104 = getv function %tmp.103 :hasValue;
+            %tmp.106 = lgetv %activityInfo;
+            %tmp.108 = const :averageCadence;
+            %tmp.109 = invoke %tmp.103 %tmp.104(%tmp.106, %tmp.108);
+            bf %tmp.109 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_true:
+            %tmp.110 = lgetv %activityInfo;
+            %tmp.111 = getv %tmp.110 :averageCadence;
+            push %tmp.111;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_false:
+            %tmp.112 = 0;
+            push %tmp.112;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_end:
+            %tmp.113 = phi [%tmp.109 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_begin] [%tmp.111 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_true] [%tmp.112 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_false] [%tmp.113 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_60_56_end];
+            %tmp.114 = mul %tmp.102 %tmp.113;
+            putv self :lapStartTotalCadence %tmp.114;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 61 12 ]
+            %tmp.115 = 0;
+            putv self :__nbGroundContactTime %tmp.115;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 62 12 ]
+            %tmp.116 = 0;
+            putv self :__totalGroundContactTime %tmp.116;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 63 12 ]
+            %tmp.117 = 0;
+            putv self :__nbVerticalOscillation %tmp.117;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 64 12 ]
+            %tmp.118 = 0.0;
+            putv self :__totalVerticalOscillation %tmp.118;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 65 12 ]
+            %tmp.119 = 0;
+            putv self :__nbStepLength %tmp.119;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 66 12 ]
+            %tmp.120 = 0;
+            putv self :__totalStepLength %tmp.120;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_50_63_stop:
+        }
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 69; ]
+        function onSessionStart() as Void {
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_69_42_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 70 12 ]
+            %tmp.1 = 0;
+            putv self :lapNumber %tmp.1;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 71 12 ]
+            %tmp.2 = 0;
+            putv self :lapStartTimerTime %tmp.2;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 72 12 ]
+            %tmp.3 = 0.0;
+            putv self :lapStartElapsedDistance %tmp.3;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 73 12 ]
+            %tmp.4 = 0;
+            putv self :lapStartTotalAscent %tmp.4;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 74 12 ]
+            %tmp.5 = 0;
+            putv self :lapStartTotalDescent %tmp.5;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 75 12 ]
+            %tmp.6 = 0;
+            putv self :lapStartCalories %tmp.6;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 76 12 ]
+            %tmp.7 = 0;
+            putv self :lapStartTotalHeartRate %tmp.7;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 77 12 ]
+            %tmp.8 = 0;
+            putv self :lapStartTotalPower %tmp.8;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 78 12 ]
+            %tmp.9 = 0.0;
+            putv self :lapStartTotalSpeed %tmp.9;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 79 12 ]
+            %tmp.10 = 0;
+            putv self :lapStartTotalCadence %tmp.10;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 80 12 ]
+            %tmp.11 = 0;
+            putv self :__nbGroundContactTime %tmp.11;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 81 12 ]
+            %tmp.12 = 0;
+            putv self :__totalGroundContactTime %tmp.12;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 82 12 ]
+            %tmp.13 = 0;
+            putv self :__nbVerticalOscillation %tmp.13;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 83 12 ]
+            %tmp.14 = 0.0;
+            putv self :__totalVerticalOscillation %tmp.14;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 84 12 ]
+            %tmp.15 = 0;
+            putv self :__nbStepLength %tmp.15;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 85 12 ]
+            %tmp.16 = 0;
+            putv self :__totalStepLength %tmp.16;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_69_42_stop:
+        }
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 88; ]
+        function accumulateRunningDynamics(runningDynamicsData as AntPlus.RunningDynamicsData or Null) as Void {
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_88_103_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 89 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_89_12_if_stmt:
+            %tmp.2 = lgetv %runningDynamicsData;
+            %tmp.3 = null;
+            %tmp.4 = eq %tmp.2 %tmp.3;
+            bf %tmp.4 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_89_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_89_12_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_89_45_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 90 16 ]
+            ret ?;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_89_45_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_89_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_89_12_if_end:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 92 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_12_if_stmt:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_16_begin:
+            %tmp.6 = lgetv %runningDynamicsData;
+            %tmp.8 = const :groundContactTime;
+            %tmp.9 = canhazplz %tmp.6 %tmp.8;
+            %tmp.10 = dup %tmp.9;
+            bf %tmp.10 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_62_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_62_true:
+            %tmp.11 = lgetv %runningDynamicsData;
+            %tmp.12 = as %tmp.11 { (interface { var groundContactTime; }) };
+            %tmp.13 = getv %tmp.12 :groundContactTime;
+            %tmp.14 = null;
+            %tmp.15 = ne %tmp.13 %tmp.14;
+            %tmp.16 = and %tmp.9 %tmp.15;
+            push %tmp.16;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_62_end:
+            %tmp.17 = phi [%tmp.10 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_16_begin] [%tmp.16 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_62_true] [%tmp.17 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_62_end];
+            bf %tmp.17 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_12_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_109_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 93 16 ]
+            %tmp.18 = getv self :__totalGroundContactTime;
+            %tmp.19 = lgetv %runningDynamicsData;
+            %tmp.20 = as %tmp.19 { (interface { var groundContactTime; }) };
+            %tmp.21 = getv %tmp.20 :groundContactTime;
+            %tmp.22 = add %tmp.18 %tmp.21;
+            putv self :__totalGroundContactTime dup %tmp.22;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 94 16 ]
+            %tmp.25 = getv ? :__nbGroundContactTime;
+            %tmp.26 = add %tmp.25 1;
+            putv self :__nbGroundContactTime dup %tmp.26;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_109_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_92_12_if_end:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 96 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_12_if_stmt:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_16_begin:
+            %tmp.28 = lgetv %runningDynamicsData;
+            %tmp.30 = const :verticalOscillation;
+            %tmp.31 = canhazplz %tmp.28 %tmp.30;
+            %tmp.32 = dup %tmp.31;
+            bf %tmp.32 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_64_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_64_true:
+            %tmp.33 = lgetv %runningDynamicsData;
+            %tmp.34 = as %tmp.33 { (interface { var verticalOscillation; }) };
+            %tmp.35 = getv %tmp.34 :verticalOscillation;
+            %tmp.36 = null;
+            %tmp.37 = ne %tmp.35 %tmp.36;
+            %tmp.38 = and %tmp.31 %tmp.37;
+            push %tmp.38;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_64_end:
+            %tmp.39 = phi [%tmp.32 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_16_begin] [%tmp.38 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_64_true] [%tmp.39 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_64_end];
+            bf %tmp.39 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_12_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_113_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 97 16 ]
+            %tmp.40 = getv self :__totalVerticalOscillation;
+            %tmp.41 = lgetv %runningDynamicsData;
+            %tmp.42 = as %tmp.41 { (interface { var verticalOscillation; }) };
+            %tmp.43 = getv %tmp.42 :verticalOscillation;
+            %tmp.44 = add %tmp.40 %tmp.43;
+            putv self :__totalVerticalOscillation dup %tmp.44;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 98 16 ]
+            %tmp.47 = getv ? :__nbVerticalOscillation;
+            %tmp.48 = add %tmp.47 1;
+            putv self :__nbVerticalOscillation dup %tmp.48;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_113_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_96_12_if_end:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 100 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_12_if_stmt:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_16_begin:
+            %tmp.50 = lgetv %runningDynamicsData;
+            %tmp.52 = const :stepLength;
+            %tmp.53 = canhazplz %tmp.50 %tmp.52;
+            %tmp.54 = dup %tmp.53;
+            bf %tmp.54 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_55_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_55_true:
+            %tmp.55 = lgetv %runningDynamicsData;
+            %tmp.56 = as %tmp.55 { (interface { var stepLength; }) };
+            %tmp.57 = getv %tmp.56 :stepLength;
+            %tmp.58 = null;
+            %tmp.59 = ne %tmp.57 %tmp.58;
+            %tmp.60 = and %tmp.53 %tmp.59;
+            push %tmp.60;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_55_end:
+            %tmp.61 = phi [%tmp.54 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_16_begin] [%tmp.60 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_55_true] [%tmp.61 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_55_end];
+            bf %tmp.61 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_12_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_95_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 101 16 ]
+            %tmp.62 = getv self :__totalStepLength;
+            %tmp.63 = lgetv %runningDynamicsData;
+            %tmp.64 = as %tmp.63 { (interface { var stepLength; }) };
+            %tmp.65 = getv %tmp.64 :stepLength;
+            %tmp.66 = add %tmp.62 %tmp.65;
+            putv self :__totalStepLength dup %tmp.66;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 102 16 ]
+            %tmp.69 = getv ? :__nbStepLength;
+            %tmp.70 = add %tmp.69 1;
+            putv self :__nbStepLength dup %tmp.70;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_95_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_100_12_if_end:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_88_103_stop:
+        }
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 106; ]
+        function computeRunningDynamics(runningDynamicsData as AntPlus.RunningDynamicsData) as Void {
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_106_99_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 107 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_107_12_if_stmt:
+            %tmp.2 = getv ? :__nbGroundContactTime;
+            %tmp.3 = 0;
+            %tmp.4 = gt %tmp.2 %tmp.3;
+            bf %tmp.4 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_107_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_107_12_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_107_43_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 108 16 ]
+            %tmp.6 = getv ? :__totalGroundContactTime;
+            %tmp.8 = getv ? :__nbGroundContactTime;
+            %tmp.9 = div %tmp.6 %tmp.8;
+            putv self :lapAverageGroundContactTime %tmp.9;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_107_43_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_107_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_107_12_if_end:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 110 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_110_12_if_stmt:
+            %tmp.11 = getv ? :__nbVerticalOscillation;
+            %tmp.12 = 0;
+            %tmp.13 = gt %tmp.11 %tmp.12;
+            bf %tmp.13 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_110_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_110_12_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_110_45_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 111 16 ]
+            %tmp.15 = getv ? :__totalVerticalOscillation;
+            %tmp.17 = getv ? :__nbVerticalOscillation;
+            %tmp.18 = div %tmp.15 %tmp.17;
+            putv self :lapAverageVerticalOscillation %tmp.18;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_110_45_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_110_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_110_12_if_end:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 113 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_113_12_if_stmt:
+            %tmp.20 = getv ? :__nbStepLength;
+            %tmp.21 = 0;
+            %tmp.22 = gt %tmp.20 %tmp.21;
+            bf %tmp.22 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_113_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_113_12_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_113_36_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 114 16 ]
+            %tmp.24 = getv ? :__totalStepLength;
+            %tmp.26 = getv ? :__nbStepLength;
+            %tmp.27 = div %tmp.24 %tmp.26;
+            putv self :lapAverageStepLength %tmp.27;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_113_36_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_113_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_113_12_if_end:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_106_99_stop:
+        }
+        [ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 118; ]
+        function compute(activityInfo as Activity.Info) as Void {
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_118_64_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 119 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_begin:
+            %tmp.1 = self;
+            %tmp.2 = getv function %tmp.1 :hasValue;
+            %tmp.4 = lgetv %activityInfo;
+            %tmp.6 = const :elapsedDistance;
+            %tmp.7 = invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+            bf %tmp.7 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_true:
+            %tmp.8 = lgetv %activityInfo;
+            %tmp.9 = getv %tmp.8 :elapsedDistance;
+            %tmp.11 = getv ? :lapStartElapsedDistance;
+            %tmp.12 = sub %tmp.9 %tmp.11;
+            push %tmp.12;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_false:
+            %tmp.13 = null;
+            push %tmp.13;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_end:
+            %tmp.14 = phi [%tmp.7 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_begin] [%tmp.12 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_true] [%tmp.13 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_false] [%tmp.14 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_119_33_end];
+            putv self :lapElapsedDistance %tmp.14;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 120 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_begin:
+            %tmp.15 = self;
+            %tmp.16 = getv function %tmp.15 :hasValue;
+            %tmp.18 = lgetv %activityInfo;
+            %tmp.20 = const :totalAscent;
+            %tmp.21 = invoke %tmp.15 %tmp.16(%tmp.18, %tmp.20);
+            bf %tmp.21 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_true:
+            %tmp.22 = lgetv %activityInfo;
+            %tmp.23 = getv %tmp.22 :totalAscent;
+            %tmp.25 = getv ? :lapStartTotalAscent;
+            %tmp.26 = sub %tmp.23 %tmp.25;
+            push %tmp.26;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_false:
+            %tmp.27 = null;
+            push %tmp.27;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_end:
+            %tmp.28 = phi [%tmp.21 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_begin] [%tmp.26 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_true] [%tmp.27 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_false] [%tmp.28 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_120_29_end];
+            putv self :lapTotalAscent %tmp.28;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 121 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_begin:
+            %tmp.29 = self;
+            %tmp.30 = getv function %tmp.29 :hasValue;
+            %tmp.32 = lgetv %activityInfo;
+            %tmp.34 = const :totalDescent;
+            %tmp.35 = invoke %tmp.29 %tmp.30(%tmp.32, %tmp.34);
+            bf %tmp.35 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_true:
+            %tmp.36 = lgetv %activityInfo;
+            %tmp.37 = getv %tmp.36 :totalDescent;
+            %tmp.39 = getv ? :lapStartTotalDescent;
+            %tmp.40 = sub %tmp.37 %tmp.39;
+            push %tmp.40;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_false:
+            %tmp.41 = null;
+            push %tmp.41;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_end:
+            %tmp.42 = phi [%tmp.35 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_begin] [%tmp.40 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_true] [%tmp.41 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_false] [%tmp.42 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_121_30_end];
+            putv self :lapTotalDescent %tmp.42;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 122 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_begin:
+            %tmp.43 = self;
+            %tmp.44 = getv function %tmp.43 :hasValue;
+            %tmp.46 = lgetv %activityInfo;
+            %tmp.48 = const :calories;
+            %tmp.49 = invoke %tmp.43 %tmp.44(%tmp.46, %tmp.48);
+            bf %tmp.49 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_true:
+            %tmp.50 = lgetv %activityInfo;
+            %tmp.51 = getv %tmp.50 :calories;
+            %tmp.53 = getv ? :lapStartCalories;
+            %tmp.54 = sub %tmp.51 %tmp.53;
+            push %tmp.54;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_false:
+            %tmp.55 = null;
+            push %tmp.55;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_end:
+            %tmp.56 = phi [%tmp.49 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_begin] [%tmp.54 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_true] [%tmp.55 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_false] [%tmp.56 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_122_26_end];
+            putv self :lapCalories %tmp.56;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 123 12 ]
+            [ "_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_118_64_start" "_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_118_64_stop" ]
+            %sessionTimerTime.1 = local;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_begin:
+            %tmp.57 = self;
+            %tmp.58 = getv function %tmp.57 :hasValue;
+            %tmp.60 = lgetv %activityInfo;
+            %tmp.62 = const :timerTime;
+            %tmp.63 = invoke %tmp.57 %tmp.58(%tmp.60, %tmp.62);
+            bf %tmp.63 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_true:
+            %tmp.64 = lgetv %activityInfo;
+            %tmp.65 = getv %tmp.64 :timerTime;
+            push %tmp.65;
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_false:
+            %tmp.66 = null;
+            push %tmp.66;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_end:
+            %tmp.67 = phi [%tmp.63 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_begin] [%tmp.65 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_true] [%tmp.66 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_false] [%tmp.67 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_123_35_end];
+            lputv %sessionTimerTime.1 %tmp.67;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 124 12 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_12_if_stmt:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_16_begin:
+            %tmp.69 = lgetv %sessionTimerTime.1;
+            %tmp.70 = null;
+            %tmp.71 = ne %tmp.69 %tmp.70;
+            %tmp.72 = dup %tmp.71;
+            bf %tmp.72 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_44_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_44_true:
+            %tmp.74 = lgetv %sessionTimerTime.1;
+            %tmp.75 = as %tmp.74 { (!Null) };
+            %tmp.77 = getv ? :lapStartTimerTime;
+            %tmp.78 = gt %tmp.75 %tmp.77;
+            %tmp.79 = and %tmp.71 %tmp.78;
+            push %tmp.79;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_44_end:
+            %tmp.80 = phi [%tmp.72 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_16_begin] [%tmp.79 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_44_true] [%tmp.80 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_44_end];
+            bf %tmp.80 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_12_if_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_12_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_82_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 125 16 ]
+            %tmp.82 = lgetv %sessionTimerTime.1;
+            %tmp.83 = as %tmp.82 { (!Null) };
+            %tmp.85 = getv ? :lapStartTimerTime;
+            %tmp.86 = sub %tmp.83 %tmp.85;
+            putv self :lapTimerTime %tmp.86;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 126 16 ]
+            [ "_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_82_start" "_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_82_stop" ]
+            %sec.2 = local;
+            %tmp.88 = getv ? :lapTimerTime;
+            %tmp.89 = 1000;
+            %tmp.90 = div %tmp.88 %tmp.89;
+            lputv %sec.2 %tmp.90;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 127 16 ]
+            [ "_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_82_start" "_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_82_stop" ]
+            %mn.3 = local;
+            %tmp.92 = lgetv %sec.2;
+            %tmp.93 = 60;
+            %tmp.94 = div %tmp.92 %tmp.93;
+            lputv %mn.3 %tmp.94;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 128 16 ]
+            %tmp.95 = newa 4;
+            %tmp.97 = lgetv %mn.3;
+            %tmp.98 = 60;
+            %tmp.99 = div %tmp.97 %tmp.98;
+            %tmp.100 = dup %tmp.95;
+            %tmp.101 = aputv %tmp.100 0 %tmp.99;
+            %tmp.103 = lgetv %mn.3;
+            %tmp.104 = 60;
+            %tmp.105 = mod %tmp.103 %tmp.104;
+            %tmp.106 = dup %tmp.101;
+            %tmp.107 = aputv %tmp.106 1 %tmp.105;
+            %tmp.109 = lgetv %sec.2;
+            %tmp.110 = 60;
+            %tmp.111 = mod %tmp.109 %tmp.110;
+            %tmp.112 = dup %tmp.107;
+            %tmp.113 = aputv %tmp.112 2 %tmp.111;
+            %tmp.115 = getv ? :lapTimerTime;
+            %tmp.116 = 1000;
+            %tmp.117 = mod %tmp.115 %tmp.116;
+            %tmp.118 = dup %tmp.113;
+            %tmp.119 = aputv %tmp.118 3 %tmp.117;
+            putv self :lapChrono %tmp.119;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 129 16 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_129_16_if_stmt:
+            %tmp.121 = getv ? :lapTotalAscent;
+            %tmp.122 = null;
+            %tmp.123 = ne %tmp.121 %tmp.122;
+            bf %tmp.123 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_129_16_if_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_129_16_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_129_44_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 130 20 ]
+            %tmp.125 = getv ? :lapTotalAscent;
+            %tmp.126 = as %tmp.125 { (!Null) };
+            %tmp.128 = getv ? :lapTimerTime;
+            %tmp.129 = div %tmp.126 %tmp.128;
+            putv self :lapAverageAscentSpeed %tmp.129;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_129_44_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_129_16_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_129_16_if_false:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_131_23_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 132 20 ]
+            %tmp.130 = null;
+            putv self :lapAverageAscentSpeed %tmp.130;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_131_23_stop:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_129_16_if_end:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 134 16 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_134_16_if_stmt:
+            %tmp.131 = self;
+            %tmp.132 = getv function %tmp.131 :hasValue;
+            %tmp.134 = lgetv %activityInfo;
+            %tmp.136 = const :averageHeartRate;
+            %tmp.137 = invoke %tmp.131 %tmp.132(%tmp.134, %tmp.136);
+            bf %tmp.137 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_134_16_if_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_134_16_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_134_63_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 135 20 ]
+            %tmp.139 = lgetv %sessionTimerTime.1;
+            %tmp.140 = as %tmp.139 { (!Null) };
+            %tmp.141 = lgetv %activityInfo;
+            %tmp.142 = getv %tmp.141 :averageHeartRate;
+            %tmp.143 = mul %tmp.140 %tmp.142;
+            %tmp.145 = getv ? :lapStartTotalHeartRate;
+            %tmp.146 = sub %tmp.143 %tmp.145;
+            %tmp.148 = getv ? :lapTimerTime;
+            %tmp.149 = div %tmp.146 %tmp.148;
+            putv self :lapAverageHeartRate %tmp.149;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_134_63_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_134_16_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_134_16_if_false:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_136_23_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 137 20 ]
+            %tmp.150 = null;
+            putv self :lapAverageHeartRate %tmp.150;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_136_23_stop:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_134_16_if_end:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 139 16 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_139_16_if_stmt:
+            %tmp.151 = self;
+            %tmp.152 = getv function %tmp.151 :hasValue;
+            %tmp.154 = lgetv %activityInfo;
+            %tmp.156 = const :averagePower;
+            %tmp.157 = invoke %tmp.151 %tmp.152(%tmp.154, %tmp.156);
+            bf %tmp.157 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_139_16_if_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_139_16_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_139_59_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 140 20 ]
+            %tmp.159 = lgetv %sessionTimerTime.1;
+            %tmp.160 = as %tmp.159 { (!Null) };
+            %tmp.161 = lgetv %activityInfo;
+            %tmp.162 = getv %tmp.161 :averagePower;
+            %tmp.163 = mul %tmp.160 %tmp.162;
+            %tmp.165 = getv ? :lapStartTotalPower;
+            %tmp.166 = sub %tmp.163 %tmp.165;
+            %tmp.168 = getv ? :lapTimerTime;
+            %tmp.169 = div %tmp.166 %tmp.168;
+            putv self :lapAveragePower %tmp.169;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_139_59_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_139_16_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_139_16_if_false:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_141_23_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 142 20 ]
+            %tmp.170 = null;
+            putv self :lapAveragePower %tmp.170;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_141_23_stop:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_139_16_if_end:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 144 16 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_144_16_if_stmt:
+            %tmp.171 = self;
+            %tmp.172 = getv function %tmp.171 :hasValue;
+            %tmp.174 = lgetv %activityInfo;
+            %tmp.176 = const :averageSpeed;
+            %tmp.177 = invoke %tmp.171 %tmp.172(%tmp.174, %tmp.176);
+            bf %tmp.177 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_144_16_if_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_144_16_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_144_59_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 145 20 ]
+            %tmp.179 = lgetv %sessionTimerTime.1;
+            %tmp.180 = as %tmp.179 { (!Null) };
+            %tmp.181 = lgetv %activityInfo;
+            %tmp.182 = getv %tmp.181 :averageSpeed;
+            %tmp.183 = mul %tmp.180 %tmp.182;
+            %tmp.185 = getv ? :lapStartTotalSpeed;
+            %tmp.186 = sub %tmp.183 %tmp.185;
+            %tmp.188 = getv ? :lapTimerTime;
+            %tmp.189 = div %tmp.186 %tmp.188;
+            putv self :lapAverageSpeed %tmp.189;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 146 20 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_146_20_if_stmt:
+            %tmp.191 = getv ? :lapAverageSpeed;
+            %tmp.192 = 0.0;
+            %tmp.193 = gt %tmp.191 %tmp.192;
+            bf %tmp.193 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_146_20_if_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_146_20_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_146_47_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 147 24 ]
+            %tmp.194 = 1.0;
+            %tmp.196 = getv ? :lapAverageSpeed;
+            %tmp.197 = div %tmp.194 %tmp.196;
+            putv self :lapAveragePace %tmp.197;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_146_47_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_146_20_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_146_20_if_false:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_148_27_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 149 24 ]
+            %tmp.198 = null;
+            putv self :lapAveragePace %tmp.198;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_148_27_stop:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_146_20_if_end:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_144_59_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_144_16_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_144_16_if_false:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_151_23_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 152 20 ]
+            %tmp.199 = null;
+            putv self :lapAverageSpeed %tmp.199;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 153 20 ]
+            %tmp.200 = null;
+            putv self :lapAveragePace %tmp.200;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_151_23_stop:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_144_16_if_end:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 155 16 ]
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_155_16_if_stmt:
+            %tmp.201 = self;
+            %tmp.202 = getv function %tmp.201 :hasValue;
+            %tmp.204 = lgetv %activityInfo;
+            %tmp.206 = const :averageCadence;
+            %tmp.207 = invoke %tmp.201 %tmp.202(%tmp.204, %tmp.206);
+            bf %tmp.207 @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_155_16_if_false;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_155_16_if_true:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_155_61_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 156 20 ]
+            %tmp.209 = lgetv %sessionTimerTime.1;
+            %tmp.210 = as %tmp.209 { (!Null) };
+            %tmp.211 = lgetv %activityInfo;
+            %tmp.212 = getv %tmp.211 :averageCadence;
+            %tmp.213 = mul %tmp.210 %tmp.212;
+            %tmp.215 = getv ? :lapStartTotalCadence;
+            %tmp.216 = sub %tmp.213 %tmp.215;
+            %tmp.218 = getv ? :lapTimerTime;
+            %tmp.219 = div %tmp.216 %tmp.218;
+            putv self :lapAverageCadence %tmp.219;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_155_61_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_155_16_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_155_16_if_false:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_157_23_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 158 20 ]
+            %tmp.220 = null;
+            putv self :lapAverageCadence %tmp.220;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_157_23_stop:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_155_16_if_end:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_82_stop:
+            goto @_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_12_if_end;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_12_if_false:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_160_19_start:
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 161 16 ]
+            %tmp.221 = null;
+            putv self :lapAverageHeartRate %tmp.221;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 162 16 ]
+            %tmp.222 = null;
+            putv self :lapAveragePower %tmp.222;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 163 16 ]
+            %tmp.223 = null;
+            putv self :lapAveragePace %tmp.223;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 164 16 ]
+            %tmp.224 = null;
+            putv self :lapAverageSpeed %tmp.224;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 165 16 ]
+            %tmp.225 = null;
+            putv self :lapAverageCadence %tmp.225;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 166 16 ]
+            %tmp.226 = null;
+            putv self :lapAverageAscentSpeed %tmp.226;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 167 16 ]
+            %tmp.227 = null;
+            putv self :lapTimerTime %tmp.227;
+[ "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc" 168 16 ]
+            %tmp.228 = null;
+            putv self :lapChrono %tmp.228;
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_160_19_stop:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_124_12_if_end:
+_Users_sylvain_romillon_Documents_Developpement_activelook_garmin_app_DataFields_ActiveLookDataField_source_Laps_mc_118_64_stop:
+        }
+    }
+}
+[ @file = "/Users/sylvain.romillon/Documents/Developpement/activelook-garmin-app/DataFields/ActiveLookDataField/source/Laps.mc"; @line = 1; ]
+<init> {
+}
