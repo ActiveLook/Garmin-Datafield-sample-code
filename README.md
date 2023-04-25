@@ -1,6 +1,6 @@
 # ActiveLook DataField Sample Code
 
-This project contains the full code of latest Activelook Datafield for Garmin. It is openly shared with de developer community under the 'ActiveLook license agreement'. Namely, the products and applications deployed in the field should respect the [ActiveLook certification guidelines](https://www.activelook.net/news-blog/activelook-application-certification-plan).
+This project contains the full code of latest Activelook Datafield for Garmin. It is openly shared with de developer community under the ['ActiveLook license agreement'](https://uploads-ssl.webflow.com/608ac25f0db820864bfcab5d/631b34ed4f0ecc1ededca741_ActiveLook%20-%20Brand%20License%20Agreement%20-%200.3.pdf). Namely, the products and applications deployed in the field should respect the [ActiveLook certification guidelines](https://www.activelook.net/news-blog/activelook-application-certification-plan).
 
 This Datafield allows a [Garmin compatible device](#compatible-devices) to display live workout metrics (and more!) in ActiveLook-powered eyewear.
 
