@@ -1,8 +1,8 @@
-# ActiveLookDataField
+# ActiveLook DataField Sample Code
 
-Enables a [compatible Garmin device](#compatible-devices) running Connect IQ to display live workout metrics (and some more!) in the ActiveLook glasses.
+This project contains the full code of latest Activelook Datafield for Garmin. It is openly shared with de developer community under the 'ActiveLook license agreement'. Namely, the products and applications deployed in the field should respect the [ActiveLook certification guidelines](https://www.activelook.net/news-blog/activelook-application-certification-plan).
 
-The "ActiveLook Datafield" is an advanced plugin that installs directly on your [compatible Garmin device](#compatible-devices) and automatically connects to your ActiveLook eyewear.
+This Datafield allows a [Garmin compatible device](#compatible-devices) to display live workout metrics (and more!) in ActiveLook-powered eyewear.
 
 # Installation
 
