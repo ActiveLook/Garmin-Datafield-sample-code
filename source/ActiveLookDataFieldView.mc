@@ -242,7 +242,7 @@ class DataFieldDrawable extends WatchUi.Drawable {
 (:typecheck(false))
 class ActiveLookDataFieldView extends WatchUi.DataField {
 
-    hidden var __heart_count = -3;
+    hidden var __heart_count = -5;
     hidden var __lastError = null;
 
     private var canvas as DataFieldDrawable = new DataFieldDrawable();
@@ -250,7 +250,6 @@ class ActiveLookDataFieldView extends WatchUi.DataField {
     function initialize() {
         DataField.initialize();
         $.resetGlobalsNext();
-        $.sdk = new ActiveLookSDK.ALSDK(self);
         View.setLayout([self.canvas]);
         if(Toybox.AntPlus has :RunningDynamics) {
     		runningDynamics = new Toybox.AntPlus.RunningDynamics(null);
@@ -279,6 +278,9 @@ class ActiveLookDataFieldView extends WatchUi.DataField {
             }
         }
         self.__heart_count += 1;
+        if(self.__heart_count == 0){
+            $.sdk = new ActiveLookSDK.ALSDK(self);
+        }
         if (self.__heart_count < 0) {
             log("compute", [info, self.__heart_count]);
             return null;
