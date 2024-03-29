@@ -1,0 +1,5 @@
+bin/
+.env
+key/
+.DS_Store
+/.vscode/

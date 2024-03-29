@@ -1,8 +1,8 @@
-# ActiveLook DataField Sample Code
+# ActiveLookDataField
 
-This project contains the full code of latest Activelook Datafield for Garmin. It is openly shared with de developer community under the ['ActiveLook license agreement'](https://uploads-ssl.webflow.com/608ac25f0db820864bfcab5d/631b34ed4f0ecc1ededca741_ActiveLook%20-%20Brand%20License%20Agreement%20-%200.3.pdf). Namely, the products and applications deployed in the field should respect the [ActiveLook certification guidelines](https://www.activelook.net/news-blog/activelook-application-certification-plan).
+Enables a [compatible Garmin device](#compatible-devices) running Connect IQ to display live workout metrics (and some more!) in the ActiveLook glasses.
 
-This Datafield allows a [Garmin compatible device](#compatible-devices) to display live workout metrics (and more!) in ActiveLook-powered eyewear.
+The "ActiveLook Datafield" is an advanced plugin that installs directly on your [compatible Garmin device](#compatible-devices) and automatically connects to your ActiveLook eyewear.
 
 # Installation
 
@@ -245,17 +245,47 @@ The project is composed of the following files:
     If the simulator becomes unresponsive, or it is not possible to launch the project
     > ./run.sh clean
 
+# Assets generation
+
+Generate `devices.csv` :
+
+```sh
+cd assets
+./generate-all.sh
+```
+
+Generate graphicals assets :
+
+```sh
+./generate.sh
+```
+
+# BLE on simulator
+
+You can use a [nrf52840 dongle](https://www.nordicsemi.com/Products/Development-hardware/nrf52840-dongle) to connect Glasses with simulator.
+
+1. Download and install [NRF Connect for destktop](https://www.nordicsemi.com/Products/Development-tools/nrf-connect-for-desktop)
+1. Use the programmer tool to configure your dongle by installing the [BLE-nRF52840-dongle.hex](README_assets/BLE-nRF52840-dongle.hex)
+2. To find your Nordic Port Com
+   ```sh
+   ls /dev/tty*  
+   ``` 
+3. In the Garmin simulator, these Nordic Port Comm can be added using the `Settings > BLE Settings >` menu items.
+
 # History (YYYY/MM/DD)
 
 0. <a id="EDIT0">2022/08/05</a> Document creation.
 1. <a id="EDIT1">2023/04/24</a> Update metrics available & devices compatibility
+2. <a id="EDIT2">2023/09/28</a> Update assets generation, BLE on simulator & devices compatibility
 
 <!-- # Footnotes -->
 ## Compatible devices
 
 The compatible devices are listed in the file [manifest.xml](manifest.xml)\
-At the time of this [edit 1](#EDIT1) they are:
+At the time of this [edit 1](#EDIT2) they are:
 
+- approachs7042mm
+- approachs7047mm
 - d2airx10
 - d2mach1
 - descentmk2
@@ -267,7 +297,12 @@ At the time of this [edit 1](#EDIT1) they are:
 - edge540
 - edge830
 - edge840
+- edgeexplore
+- edgeexplore2
 - epix2
+- epix2pro42mm
+- epix2pro47mm
+- epix2pro51mm
 - fenix5plus
 - fenix5splus
 - fenix5xplus
@@ -275,8 +310,12 @@ At the time of this [edit 1](#EDIT1) they are:
 - fenix6spro
 - fenix6xpro
 - fenix7
+- fenix7pro
 - fenix7s
+- fenix7spro
 - fenix7x
+- fenix7xpro
+- fr245m
 - fr255
 - fr255m
 - fr255s
@@ -301,5 +340,7 @@ At the time of this [edit 1](#EDIT1) they are:
 - venu2
 - venu2plus
 - venu2s
+- venu3
+- venu3s
 - venusq2m
-  
+- vivoactive5

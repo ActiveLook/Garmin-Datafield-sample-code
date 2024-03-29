@@ -503,13 +503,13 @@ module ActiveLook {
         }
 		function currentPaceFullFormat(value as Lang.Number or Lang.Float or Null) as Lang.String {
             if (value != null) {
-	            value = round5(Math.round(value).toLong());
+	            value = Math.round(value).toLong() > 300 ? round5(Math.round(value).toLong()) : Math.round(value).toLong();
             }
             return paceFullFormat(value);
         }
 		function currentPaceHalfFormat(value as Lang.Number or Lang.Float or Null) as Lang.String {
             if (value != null) {
-	            value = round5(Math.round(value).toLong());
+	            value = Math.round(value).toLong() > 300 ? round5(Math.round(value).toLong()) : Math.round(value).toLong();
             }
             return paceHalfFormat(value);
         }

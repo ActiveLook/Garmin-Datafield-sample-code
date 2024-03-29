@@ -1,9 +1,9 @@
 <strings>
     <string id="AppName">ActiveLook Datafield - Sport Smartglasses</string>
     <string id="settings_glasses_name">Glasses name</string>
-    <string id="settings_screens">Default screens set</string>
-    <string id="settings_run">Running screens set (if supported by your device. API level 3.2 or higher)</string>
-    <string id="settings_bike">Cycling screens set (if supported by your device. API level 3.2 or higher)</string>
+    <string id="settings_screens">Default screens</string>
+    <string id="settings_run">Running screens</string>
+    <string id="settings_bike">Cycling screens</string>
     <string id="update_datafield">Update this datafield</string>
     <string id="update_glasses">Update your glasses</string>
     <string id="update_glasses_second_row">using ActiveLook</string>
