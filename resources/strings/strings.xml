@@ -1,11 +1,24 @@
 <strings>
     <string id="AppName">ActiveLook Datafield - Sport Smartglasses</string>
-    <string id="settings_glasses_name">Glasses name</string>
-    <string id="settings_screens">Default screens</string>
-    <string id="settings_run">Running screens</string>
-    <string id="settings_bike">Cycling screens</string>
+    
+    <string id="settings_glasses_name">My eyewear</string>
+
+    <string id="settings_description">Configure data screens</string>
+
+    <string id="settings_screens">Default</string>
+    <string id="settings_run">Running</string>
+    <string id="settings_bike">Cycling</string>
+    
+    <string id="settings_is_gesture_enable">Enable the gesture sensor</string>
+    
+    <string id="settings_is_auto_loop">Auto-cycle data screens</string>
+    <string id="settings_loop_timer">Adjust screen change interval (sec)</string>
+
+    <string id="settings_is_als_enable">Display auto brightness</string>
+
     <string id="update_datafield">Update this datafield</string>
     <string id="update_glasses">Update your glasses</string>
     <string id="update_glasses_second_row">using ActiveLook</string>
     <string id="update_glasses_third_row">mobile application</string>
+
 </strings>

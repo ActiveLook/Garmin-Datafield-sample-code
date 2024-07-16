@@ -55,7 +55,7 @@ module ActiveLook {
             lapStartTotalDescent = hasValue(activityInfo, :totalDescent) ? activityInfo.totalDescent : 0;
             lapStartCalories = hasValue(activityInfo, :calories) ? activityInfo.calories : 0;
             lapStartTotalHeartRate = lapStartTimerTime * (hasValue(activityInfo, :averageHeartRate) ? activityInfo.averageHeartRate : 0);
-            lapStartTotalPower = lapStartTimerTime * (hasValue(activityInfo, :averagePower) ? activityInfo.averagePower : 0);
+            lapStartTotalPower = lapStartTimerTime * ( AugmentedActivityInfo.averagePower != null  ? AugmentedActivityInfo.averagePower : 0);
             lapStartTotalSpeed = lapStartTimerTime * (hasValue(activityInfo, :averageSpeed) ? activityInfo.averageSpeed : 0.0);
             lapStartTotalCadence = lapStartTimerTime * (hasValue(activityInfo, :averageCadence) ? activityInfo.averageCadence : 0);
             __nbGroundContactTime = 0;
@@ -136,8 +136,8 @@ module ActiveLook {
                 } else {
                     lapAverageHeartRate = null;
                 }
-                if (hasValue(activityInfo, :averagePower)) {
-                    lapAveragePower = (sessionTimerTime * activityInfo.averagePower - lapStartTotalPower) / lapTimerTime;
+                if (AugmentedActivityInfo.averagePower != null) {
+                    lapAveragePower = (sessionTimerTime * AugmentedActivityInfo.averagePower - lapStartTotalPower) / lapTimerTime;
                 } else {
                     lapAveragePower = null;
                 }

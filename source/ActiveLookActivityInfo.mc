@@ -32,6 +32,9 @@ module ActiveLook {
         var __pAccuNb as Lang.Number = 0;
         var threeSecPower as Lang.Float?;
         var normalizedPower as Lang.Float?;
+        var maxPower as Lang.Float?;
+        var averagePower as Lang.Float?;
+        var __pavgAccuNb as Lang.Float = 0.0;
 
         var __nbGroundContactTime as Lang.Number = 0;
         var __totalGroundContactTime as Lang.Number = 0;
@@ -60,6 +63,9 @@ module ActiveLook {
             __pAccuNb = 0;
             threeSecPower = null;
             normalizedPower = null;
+            maxPower = null;
+            averagePower = null;
+            __pavgAccuNb = 0.0;
             __nbGroundContactTime = 0;
             __totalGroundContactTime = 0;
             averageGroundContactTime = null;
@@ -184,9 +190,9 @@ module ActiveLook {
             averagePace = tmpValid ? 1.0 / tmp : null;
 
             // Three seconds power
-            if (__pSamples.size() >= 3) {
-                tmp = __pSamples.slice(-3, null);
-                threeSecPower = (tmp[0] + tmp[1] + tmp[2]) / 3.0;
+            if (__pSamples.size() >= 6) {
+                tmp = __pSamples.slice(-6, null);
+                threeSecPower = (tmp[0] + tmp[1] + tmp[2] + tmp[3] + tmp[4] + tmp[5]) / 6.0;
             } else {
                 threeSecPower = null;
             }
@@ -196,7 +202,33 @@ module ActiveLook {
             } else {
                 normalizedPower = null;
             }
-
+            // Workaround : Some devices don't have averagePower & maxPower in Activity.info so we calculated them
+            // Max power
+            tmp = get(:currentPower);
+            tmpValid = tmp != null && tmp != false && tmp > 0.0;
+            if(tmpValid){
+                 maxPower = maxPower == null ? tmp : tmp > maxPower ? tmp : maxPower;
+            }
+            // Average power
+            if (__ai != null && __ai has :averagePower) {
+                tmp = __ai.averagePower;
+                tmpValid = tmp != null && tmp != false && tmp > 0.0;
+                if(tmpValid){
+                    averagePower = tmp;
+                }else{
+                    tmp = get(:currentPower);
+                    tmpValid = tmp != null && tmp != false && tmp > 0.0;
+                    if(tmpValid){
+                        if(averagePower != null){
+                            averagePower = ((averagePower * __pavgAccuNb) + tmp) / (__pavgAccuNb + 1);
+                        } else{
+                            averagePower = tmp;
+                        }
+                        __pavgAccuNb+=1;
+                    }
+                }
+            }
+        
             // Average ascent speed
             tmpValid = __asSamples.size();
             if (tmpValid > 1) {
@@ -250,7 +282,6 @@ module ActiveLook {
             :lapAverageGroundContactTime, :lapAverageVerticalOscillation, :lapAverageStepLength,
         ];
 
-        //ToDo : A modifier avec les bonnes positions
         const POSITIONS as Lang.Array<PagePositions> = [
             [],
             [ 0x00001E59 ],
@@ -483,6 +514,10 @@ module ActiveLook {
             :averagePace 			=> { :full => :paceFullFormat,  :half => :paceHalfFormat  },
             :lapChrono      		=> { :full => :toFullChronoStr, :half => :toHalfChronoStr },
             :lapAveragePace 		=> { :full => :paceFullFormat,  :half => :paceHalfFormat  },
+            :averagePower 		    => { :full => :averagePowerFullFormat,  :half => :averagePowerHalfFormat  },
+            :lapAveragePower 		=> { :full => :averagePowerFullFormat,  :half => :averagePowerHalfFormat  },
+            :normalizedPower 		=> { :full => :averagePowerFullFormat,  :half => :averagePowerHalfFormat  },
+            :threeSecPower 		    => { :full => :averagePowerFullFormat,  :half => :averagePowerHalfFormat  },
         };
 
         function toFullChronoStr(value as Lang.Array<Lang.Number> or Null) as Lang.String {
@@ -539,7 +574,20 @@ module ActiveLook {
                 return Lang.format("$1$:$2$", [ (value / 60).format("%02d"), ((value % 60) / 6).format("%1d") ]);
             }
         }
-
+        
+        function averagePowerFullFormat(value as Lang.Number or Lang.Float or Null) as Lang.String {
+            if (value == null) {
+                return toFullStr("-");
+            }
+            return toFullStr(Math.round(value).format("%.0f"));
+        }
+        
+        function averagePowerHalfFormat(value as Lang.Number or Lang.Float or Null) as Lang.String {
+            if (value == null) {
+                return toHalfStr("-");
+            }
+            return toHalfStr(Math.round(value).format("%.0f"));
+        }
 
         function toSizedStringDeprecated(value as Lang.Number or Lang.Float or Null, size as Lang.Number) as Lang.String {
             var tmp = "-";
@@ -668,9 +716,11 @@ module ActiveLook {
                 var mode = (pos & 0x00010000) >> 12; // (pos & 0x00FF0000 != 0) ? 16 : 0;
                 if (IDS_NO_CONVERT.hasKey(newElem[:sym])) {
                     newElem[:id] = IDS_NO_CONVERT[newElem[:sym]];
-                    if ( Toybox.Activity.getProfileInfo().sport == Toybox.Activity.SPORT_RUNNING) {
-                        if (IDS_NO_CONVERT_RUNNING_OVERRIDE.hasKey(newElem[:sym])) {
-                            newElem[:id] = IDS_NO_CONVERT_RUNNING_OVERRIDE[newElem[:sym]];
+                    if (Toybox.Activity has :getProfileInfo) {
+                        if ( Toybox.Activity.getProfileInfo().sport == Toybox.Activity.SPORT_RUNNING) {
+                            if (IDS_NO_CONVERT_RUNNING_OVERRIDE.hasKey(newElem[:sym])) {
+                                newElem[:id] = IDS_NO_CONVERT_RUNNING_OVERRIDE[newElem[:sym]];
+                            }
                         }
                     }
                 } else {

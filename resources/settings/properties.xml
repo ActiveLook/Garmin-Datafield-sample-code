@@ -3,4 +3,9 @@
     <property id="screens" type="string">(1,12,2)(15,4,2)(10,18,22)(0)</property>
     <property id="run" type="string">(1,2,4)(1,2,12)(10,18,15)(0)</property>
     <property id="bike" type="string">(1,2,4)(12,18)(6,14,20,24)(5,13,19,22)(0)</property>
+    <property id="is_gesture_enable" type="boolean">true</property>
+    <property id="is_auto_loop" type="boolean">false</property>
+    <property id="loop_timer" type="number">10</property>
+    <property id="is_als_enable" type="boolean">true</property>
+    <property id="settings_description" type="string">Details on Garmin page of Activelook website.</property>
 </properties>

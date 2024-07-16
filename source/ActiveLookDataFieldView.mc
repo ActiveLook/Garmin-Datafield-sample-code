@@ -181,11 +181,13 @@ function updateFields() as Void {
     if ($.tempo_off == 0) {
         return;
     }
+    $.sdk.holdGraphicEngine();
     for (var i = 0; i < after; i++) {
         var asStr = Layouts.get($.currentLayouts[i]);
         log("updateFields", [i, asStr, $.currentLayouts]);
         $.sdk.updateLayoutValue($.currentLayouts[i][:id], asStr);
     }
+    $.sdk.flushGraphicEngine();
 }
 
 (:typecheck(false))
@@ -242,9 +244,17 @@ class DataFieldDrawable extends WatchUi.Drawable {
 (:typecheck(false))
 class ActiveLookDataFieldView extends WatchUi.DataField {
 
-    hidden var __heart_count = -3;
+    hidden var __heart_count = 0;
     hidden var __lastError = null;
+  
+    var __is_auto_loop = Toybox.Application.Properties.getValue("is_auto_loop") as Toybox.Lang.Boolean or Null;
+    var __loop_timer = Toybox.Application.Properties.getValue("loop_timer") as Toybox.Lang.Integer or Null;
 
+    var _currentGestureStatus = Toybox.Application.Properties.getValue("is_gesture_enable") as Toybox.Lang.Boolean;
+    var _nextGestureStatus = Toybox.Application.Properties.getValue("is_gesture_enable") as Toybox.Lang.Boolean;
+    var _currentAlsStatus = Toybox.Application.Properties.getValue("is_als_enable") as Toybox.Lang.Boolean;
+    var _nextAlsStatus = Toybox.Application.Properties.getValue("is_als_enable") as Toybox.Lang.Boolean;
+    
     private var canvas as DataFieldDrawable = new DataFieldDrawable();
 
     function initialize() {
@@ -263,6 +273,8 @@ class ActiveLookDataFieldView extends WatchUi.DataField {
     }
 
     function compute(info) {
+        _nextGestureStatus = Toybox.Application.Properties.getValue("is_gesture_enable");
+        _nextAlsStatus = Toybox.Application.Properties.getValue("is_als_enable");
         AugmentedActivityInfo.accumulate(info);
         AugmentedActivityInfo.compute(info);
         var rdd = null;
@@ -283,8 +295,7 @@ class ActiveLookDataFieldView extends WatchUi.DataField {
             log("compute", [info, self.__heart_count]);
             return null;
         }
-
-		if (ActiveLookSDK.isIdled() && !ActiveLookSDK.isReconnecting) {
+		if (ActiveLookSDK.isIdled() && !ActiveLookSDK.isReconnecting && !ActiveLookSDK.isConnected()) {
 			$.sdk.startGlassesScan();
 		} else if (!ActiveLookSDK.isReady()) {
 			if (self.__lastError != null && (self.__heart_count - self.__lastError) > 50) {
@@ -303,11 +314,29 @@ class ActiveLookDataFieldView extends WatchUi.DataField {
         }
         if (ActiveLookSDK.isReady()) {
             log("compute::updateFields  ", [self.__heart_count]);
+            if(self.__is_auto_loop){
+                if(self.__loop_timer.equals(0)){
+                    log("onLoopEvent", []);
+                    $.swipe = true;
+                    self.__loop_timer = Toybox.Application.Properties.getValue("loop_timer");
+                }else{
+                    self.__loop_timer -= 1;
+                }
+            }
+
             $.updateFields();
-            if ($.tempo_off < 0 && $.tempo_pause <= 0 && $.tempo_congrats < 0) {
+            if ($.tempo_off < 0 && $.tempo_pause <= 0 && $.tempo_congrats < 0 && $.tempo_lap_freeze <= 7) {
                 $.sdk.setTime(hour, ct.min);
                 $.sdk.setBattery($.battery);
                 $.sdk.resyncGlasses();
+            }
+            if(_nextGestureStatus != _currentGestureStatus){
+                _currentGestureStatus = _nextGestureStatus;
+                self.onSettingClickGestureEvent();
+            }
+            if(_nextAlsStatus != _currentAlsStatus){
+                _currentAlsStatus = _nextAlsStatus;
+                self.onSettingClickAlsEvent();
             }
         }
         // if (runningDynamics != null) {
@@ -391,6 +420,7 @@ class ActiveLookDataFieldView extends WatchUi.DataField {
                 fullBuffer.addAll($.sdk.commandBuffer(0x62, [0xB4, 0x00]b)); // layout Session Complete
                 $.sdk.sendRawCmd(fullBuffer);
                 $.sdk.resetLayouts([]);
+                resetGlobals();
             }
         } else {
             $.tempo_congrats = 1;
@@ -459,6 +489,7 @@ class ActiveLookDataFieldView extends WatchUi.DataField {
     function onGestureEvent() as Void {
         $.log("onGestureEvent", []);
         $.swipe = true;
+        if(self.__is_auto_loop){self.__loop_timer = Toybox.Application.Properties.getValue("loop_timer");}
     }
     function onBatteryEvent(batteryLevel as Toybox.Lang.Number) as Void {
         $.log("onBatteryEvent", [batteryLevel]);
@@ -497,7 +528,24 @@ class ActiveLookDataFieldView extends WatchUi.DataField {
             self.__lastError = self.__heart_count;
         }
     }
-
+    function onSettingClickGestureEvent(){
+        if (ActiveLookSDK.isReady()) {
+            $.log("onSettingClickGestureEvent", []);
+            var data = []b;
+            if(_currentGestureStatus){data = [0x01]b;}else{data = [0x00]b;}
+            var gestureSet = $.sdk.commandBuffer(0x21, data);
+            $.sdk.sendRawCmd(gestureSet);
+        }
+    }
+    function onSettingClickAlsEvent(){
+        if (ActiveLookSDK.isReady()) {
+            $.log("onSettingClickAlsEvent", []);
+            var data = []b;
+            if(_currentAlsStatus){data = [0x01]b;}else{data = [0x00]b;}
+            var alsSet = $.sdk.commandBuffer(0x22, data);
+            $.sdk.sendRawCmd(alsSet);
+        }
+    }
 }
 
 //! Global variables.

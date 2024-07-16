@@ -2,6 +2,63 @@ using Toybox.BluetoothLowEnergy;
 using Toybox.Lang;
 using Toybox.System;
 
+//! Custom Service (ActiveLook® Commands Interface)
+const BLE_SERV_ACTIVELOOK               as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB7l);
+//! Custom Service (ActiveLook® Commands Interface) Characteristics
+const BLE_CHAR_ACTIVELOOK_TX            as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB8l);
+const BLE_CHAR_ACTIVELOOK_RX            as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CBAl);
+const BLE_CHAR_ACTIVELOOK_FLOW_CONTROL  as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB9l);
+const BLE_CHAR_ACTIVELOOK_GESTURE_EVENT as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CBBl);
+const BLE_CHAR_ACTIVELOOK_TOUCH_EVENT   as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CBCl);
+
+//! Device Information Service
+const BLE_SERV_DEVICE_INFORMATION       as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0000180A00001000l, 0x800000805F9B34FBl);
+//! Device Information Service Characteristics
+const BLE_CHAR_MANUFACTURER_NAME        as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2900001000l, 0x800000805F9B34FBl);
+const BLE_CHAR_MODEL_NUMBER             as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2400001000l, 0x800000805F9B34FBl);
+const BLE_CHAR_SERIAL_NUMBER            as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2500001000l, 0x800000805F9B34FBl);
+const BLE_CHAR_HARDWARE_VERSION         as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2700001000l, 0x800000805F9B34FBl);
+const BLE_CHAR_FIRMWARE_VERSION         as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2600001000l, 0x800000805F9B34FBl);
+const BLE_CHAR_SOFTWARE_VERSION         as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2800001000l, 0x800000805F9B34FBl);
+
+//! Battery Service
+const BLE_SERV_BATTERY                  as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0000180F00001000l, 0x800000805F9B34FBl);
+//! Battery Service Characteristics
+const BLE_CHAR_BATTERY_LEVEL            as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A1900001000l, 0x800000805F9B34FBl);
+
+const PROFILE_ACTIVE_LOOK = ({
+    :uuid => BLE_SERV_ACTIVELOOK,
+    :characteristics => [
+        { :uuid => BLE_CHAR_ACTIVELOOK_RX },
+        { :uuid => BLE_CHAR_ACTIVELOOK_TX, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
+        { :uuid => BLE_CHAR_ACTIVELOOK_GESTURE_EVENT, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
+    ]
+}) as ActiveLookBLE.ActiveLook.BleProfile;
+
+const PROFILE_DEVICE_INFO = ({
+    :uuid => BLE_SERV_DEVICE_INFORMATION,
+    :characteristics => [
+        { :uuid => BLE_CHAR_MANUFACTURER_NAME },
+        { :uuid => BLE_CHAR_MODEL_NUMBER },
+        { :uuid => BLE_CHAR_SERIAL_NUMBER },
+        { :uuid => BLE_CHAR_HARDWARE_VERSION },
+        { :uuid => BLE_CHAR_FIRMWARE_VERSION },
+        { :uuid => BLE_CHAR_SOFTWARE_VERSION },
+    ]
+}) as ActiveLookBLE.ActiveLook.BleProfile;
+
+const PROFILE_BATTERY_INFO = ({
+    :uuid => BLE_SERV_BATTERY,
+    :characteristics => [
+        { :uuid => BLE_CHAR_BATTERY_LEVEL, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
+    ]
+}) as ActiveLookBLE.ActiveLook.BleProfile;
+
+const ACTIVELOOK_PROFILES = [{:profile => PROFILE_ACTIVE_LOOK, :label => "Primary service"},
+                             {:profile => PROFILE_DEVICE_INFO, :label => "Device info service"},
+                             {:profile => PROFILE_BATTERY_INFO, :label => "Battery service"}];
+
+
 //! This module provide all the functionalities to handle
 //! the ActiveLook SmartGlasses as Bluetooth Low Energy objects.
 module ActiveLookBLE {
@@ -14,7 +71,7 @@ module ActiveLookBLE {
         //! Comment and uncomment as needed.
         (:release) private static function _log(msg as Toybox.Lang.String, data as Toybox.Lang.Object or Null) as Void {}
         (:debug)   private static function _log(msg as Toybox.Lang.String, data as Toybox.Lang.Object or Null) as Void {
-            // if ($ has :log) { $.log(Toybox.Lang.format("[ActiveLookBLE::ActiveLook] $1$", [msg]), data); }
+            //if ($ has :log) { $.log(Toybox.Lang.format("[ActiveLookBLE::ActiveLook] $1$", [msg]), data); }
         }
 
         //! Interface for delegate
@@ -27,6 +84,9 @@ module ActiveLookBLE {
             function onDescriptorWrite(descriptor as Toybox.BluetoothLowEnergy.Descriptor, status as Toybox.BluetoothLowEnergy.Status) as Void;
             function onScanResult(scanResult as Toybox.BluetoothLowEnergy.ScanResult) as Void;
             function onScanStateChange(scanState as Toybox.BluetoothLowEnergy.ScanState, status as Toybox.BluetoothLowEnergy.Status) as Void;
+            function onPassiveConnection(device as Toybox.BluetoothLowEnergy.Device) as Void;
+            function profileRegistrationStart()as Void;
+            function profileRegistrationComplete()as Void;
             function onBleError(exception as Toybox.Lang.Exception) as Void;
         };
 
@@ -38,31 +98,6 @@ module ActiveLookBLE {
                 :descriptors as Toybox.Lang.Array<Toybox.BluetoothLowEnergy.Uuid>
             }>,
         };
-
-        //! Custom Service (ActiveLook® Commands Interface)
-        private static const BLE_SERV_ACTIVELOOK               as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB7l);
-        //! Custom Service (ActiveLook® Commands Interface) Characteristics
-        private static const BLE_CHAR_ACTIVELOOK_TX            as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB8l);
-        private static const BLE_CHAR_ACTIVELOOK_RX            as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CBAl);
-        private static const BLE_CHAR_ACTIVELOOK_FLOW_CONTROL  as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB9l);
-        private static const BLE_CHAR_ACTIVELOOK_GESTURE_EVENT as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CBBl);
-        private static const BLE_CHAR_ACTIVELOOK_TOUCH_EVENT   as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CBCl);
-
-        //! Device Information Service
-        private static const BLE_SERV_DEVICE_INFORMATION       as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0000180A00001000l, 0x800000805F9B34FBl);
-        //! Device Information Service Characteristics
-        private static const BLE_CHAR_MANUFACTURER_NAME        as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2900001000l, 0x800000805F9B34FBl);
-        private static const BLE_CHAR_MODEL_NUMBER             as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2400001000l, 0x800000805F9B34FBl);
-        private static const BLE_CHAR_SERIAL_NUMBER            as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2500001000l, 0x800000805F9B34FBl);
-        private static const BLE_CHAR_HARDWARE_VERSION         as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2700001000l, 0x800000805F9B34FBl);
-        private static const BLE_CHAR_FIRMWARE_VERSION         as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2600001000l, 0x800000805F9B34FBl);
-        private static const BLE_CHAR_SOFTWARE_VERSION         as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A2800001000l, 0x800000805F9B34FBl);
-
-        //! Battery Service
-        private static const BLE_SERV_BATTERY                  as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x0000180F00001000l, 0x800000805F9B34FBl);
-        //! Battery Service Characteristics
-        private static const BLE_CHAR_BATTERY_LEVEL            as Toybox.BluetoothLowEnergy.Uuid = Toybox.BluetoothLowEnergy.longToUuid(0x00002A1900001000l, 0x800000805F9B34FBl);
-
         //! Private instance variable
         private var _delegate as ActiveLookBLE.ActiveLook.ActiveLookDelegate;
 
@@ -94,6 +129,8 @@ module ActiveLookBLE {
         private static var _device                            as Toybox.BluetoothLowEnergy.Device
                                                               or Null
                                                               = null;
+        private static var _profileIndexToRegister            as Toybox.Lang.Number
+                                                              = 0;
 
         //! Static setUp function that must be called at least once for registering the 3 necessary profiles
         //! for playing withthe ActiveLook Smart Glasses. It will register those profiles only once.
@@ -107,37 +144,28 @@ module ActiveLookBLE {
             var skipRegister = _activeLook != null ? true : false;
             _activeLook = new ActiveLook(delegate);
             if (skipRegister) { return _activeLook as ActiveLookBLE.ActiveLook; }
-            // Profile 1
-            var profileActiveLook = ({
-                :uuid => BLE_SERV_ACTIVELOOK,
-                :characteristics => [
-                    { :uuid => BLE_CHAR_ACTIVELOOK_RX },
-                    { :uuid => BLE_CHAR_ACTIVELOOK_TX, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
-                    { :uuid => BLE_CHAR_ACTIVELOOK_GESTURE_EVENT, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
-                ]
-            }) as ActiveLookBLE.ActiveLook.BleProfile;
-            Toybox.BluetoothLowEnergy.registerProfile(profileActiveLook);
-            // Profile 2
-            var profileDeviceInfo = ({
-                :uuid => BLE_SERV_DEVICE_INFORMATION,
-                :characteristics => [
-                    { :uuid => BLE_CHAR_MANUFACTURER_NAME },
-                    { :uuid => BLE_CHAR_MODEL_NUMBER },
-                    { :uuid => BLE_CHAR_SERIAL_NUMBER },
-                    { :uuid => BLE_CHAR_HARDWARE_VERSION },
-                    { :uuid => BLE_CHAR_FIRMWARE_VERSION },
-                    { :uuid => BLE_CHAR_SOFTWARE_VERSION },
-                ]
-            }) as ActiveLookBLE.ActiveLook.BleProfile;
-            Toybox.BluetoothLowEnergy.registerProfile(profileDeviceInfo);
-            // Profile 3
-            var profileBattery = ({
-                :uuid => BLE_SERV_BATTERY,
-                :characteristics => [
-                    { :uuid => BLE_CHAR_BATTERY_LEVEL, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
-                ]
-            }) as ActiveLookBLE.ActiveLook.BleProfile;
-            Toybox.BluetoothLowEnergy.registerProfile(profileBattery);
+            // Check if there is a passive connection to the device exists
+            // we do not want to register profiles/scan/connect to device
+            var dev = BluetoothLowEnergy.getPairedDevices().next() as Toybox.BluetoothLowEnergy.Device;
+            
+            if( dev != null) {
+                _device = dev;
+                _log("setUp", "Passive connection exist");
+                _registeredProfile.add(ACTIVELOOK_PROFILES[0][:profile][:uuid] as Toybox.BluetoothLowEnergy.Uuid);
+                _registeredProfile.add(ACTIVELOOK_PROFILES[1][:profile][:uuid] as Toybox.BluetoothLowEnergy.Uuid);
+                _registeredProfile.add(ACTIVELOOK_PROFILES[2][:profile][:uuid] as Toybox.BluetoothLowEnergy.Uuid);
+                delegate.onPassiveConnection(_device as Toybox.BluetoothLowEnergy.Device);
+                return _activeLook as ActiveLookBLE.ActiveLook;
+            }
+
+            // Register the profiles sequentially, one after other, when onProfileRegister() callback
+            // is called for previous profile registration success
+            if(_profileIndexToRegister < ACTIVELOOK_PROFILES.size()) {
+                delegate.profileRegistrationStart();
+                Toybox.BluetoothLowEnergy.registerProfile(ACTIVELOOK_PROFILES[_profileIndexToRegister][:profile] as ActiveLookBLE.ActiveLook.BleProfile);
+                _log("setUp", [ACTIVELOOK_PROFILES[_profileIndexToRegister][:label] + " registered"]);
+                _profileIndexToRegister++;
+            }
             // No more profile as specified here:
             // https://developer.garmin.com/connect-iq/api-docs/Toybox/BluetoothLowEnergy.html#registerProfile-instance_function
             // And it is a developer error to break this limit:
@@ -208,7 +236,7 @@ module ActiveLookBLE {
 
         //! Override Toybox.BluetoothLowEnergy.BleDelegate.onCharacteristicWrite
         function onCharacteristicWrite(characteristic as Toybox.BluetoothLowEnergy.Characteristic, status as Toybox.BluetoothLowEnergy.Status) as Void {
-            _log("onCharacteristicWrite", [characteristic, status]);
+            _log("onCharacteristicWrite", [characteristic.getUuid(), status]);
             _delegate.onCharacteristicWrite(characteristic, status);
         }
 
@@ -242,6 +270,14 @@ module ActiveLookBLE {
                 if (_registeredProfile.indexOf(uuid) == -1) {
                     _registeredProfile.add(uuid);
                     _log("onProfileRegister", ["+1", uuid, status, _registeredProfile.size()]);
+                }
+                if(_profileIndexToRegister == ACTIVELOOK_PROFILES.size()) {
+                     _delegate.profileRegistrationComplete();
+                }
+                if(_profileIndexToRegister < ACTIVELOOK_PROFILES.size()) {
+                    Toybox.BluetoothLowEnergy.registerProfile(ACTIVELOOK_PROFILES[_profileIndexToRegister][:profile]  as ActiveLookBLE.ActiveLook.BleProfile);
+                    _log("onProfileRegister", [ACTIVELOOK_PROFILES[_profileIndexToRegister][:label] + " registered"]);
+                    _profileIndexToRegister++;
                 }
             }
         }

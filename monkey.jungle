@@ -23,6 +23,7 @@ descentmk351mm.resourcePath = $(base.resourcePath);assets/generated/descentmk351
 edge1030.resourcePath = $(base.resourcePath);assets/generated/edge1030
 edge1030plus.resourcePath = $(base.resourcePath);assets/generated/edge1030plus
 edge1040.resourcePath = $(base.resourcePath);assets/generated/edge1040
+edge1050.resourcePath = $(base.resourcePath);assets/generated/edge1050
 edge530.resourcePath = $(base.resourcePath);assets/generated/edge530
 edge540.resourcePath = $(base.resourcePath);assets/generated/edge540
 edge830.resourcePath = $(base.resourcePath);assets/generated/edge830

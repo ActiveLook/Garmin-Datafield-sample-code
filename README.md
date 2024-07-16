@@ -17,7 +17,7 @@ Download and install the [SDK Manager](https://developer.garmin.com/connect-iq/s
 ## SDK
 
 Once the SDK manager is installed, download a version of the SDK to link your project against.
-At the time of this writing (2023/04/24), the version used to develop is `4.2.4`.
+At the time of this writing (2024/04/18), the version used to develop is `6.3.1`.
 
 ## Monkey C Visual Studio Code Extension
 
@@ -62,7 +62,6 @@ The memory used and the one available are displayed dynamically in the simulator
 
 At the time of this [edit 1](#EDIT1), the `fenix7` device is the compatible device with the least available memory.
 
-
 # Description
 
 > Dynamic data fields allow customers and third party developers to write additional metrics and data that will display with Garmin activities. The goal is to create a system that not only makes it easy for a user to make a quick data field based off our workout data, but also gives the developer the the ability to customize the presentation. [ConnectIQ - Datafields](https://developer.garmin.com/connect-iq/connect-iq-basics/app-types/#datafields)
@@ -75,6 +74,7 @@ It has a lot of useful features, like:
 The datafield is available on the ConnectIQ Store : [ActiveLook - Data Field for sport smart glasses](https://apps.garmin.com/en-US/apps/af8e8b58-3485-425b-b75b-5e412c2d1dfe).
 
 ## Composition
+
 The project is composed of the following files:
 
   - `Assets` folder:
@@ -90,6 +90,8 @@ The project is composed of the following files:
         - `screens`: Defines the screen quadrant available to display the datafield in, by default
         - `run`: Defines the screen quadrant available to display the datafield in, for the run activity
         - `bike`: Defines the screen quadrant available to display the datafield in, for the bike activity
+        - `is_auto_loop`: Enable or disabled Auto loop on data sreens
+        - `loop_timer`: Defines the timer in second between each swipe
 
           Depending on the activity choosen, the user will be able to display different screens presenting differents metrics  (none, 1 or more as available).
           The datafield offers preset screens, listed in the property string.
@@ -272,11 +274,18 @@ You can use a [nrf52840 dongle](https://www.nordicsemi.com/Products/Development-
    ``` 
 3. In the Garmin simulator, these Nordic Port Comm can be added using the `Settings > BLE Settings >` menu items.
 
+# Get logs from physical devices
+
+1. Connect your physical device to you PC or Mac 
+2. On Mac you have to install [Android File Transfert](https://support.google.com/android/answer/9064445?hl=en#zippy=)
+3. Add empty text file  `/GARMIN/APPS/LOGS/ActiveLookApp.TXT`
+
 # History (YYYY/MM/DD)
 
 0. <a id="EDIT0">2022/08/05</a> Document creation.
 1. <a id="EDIT1">2023/04/24</a> Update metrics available & devices compatibility
 2. <a id="EDIT2">2023/09/28</a> Update assets generation, BLE on simulator & devices compatibility
+3. <a id="EDIT2">2024/06/06</a> How to get logs on physical device
 
 <!-- # Footnotes -->
 ## Compatible devices

@@ -2,13 +2,28 @@
     <setting propertyKey="@Properties.glasses_name" title="@Strings.settings_glasses_name">
         <settingConfig type="alphaNumeric" />
     </setting>
-    <setting propertyKey="@Properties.screens" title="@Strings.settings_screens">
-        <settingConfig type="alphaNumeric" />
+    <setting propertyKey="@Properties.settings_description" title="@Strings.settings_description">
+        <settingConfig type="alphaNumeric" readonly="true"/>
     </setting>
     <setting propertyKey="@Properties.run" title="@Strings.settings_run">
         <settingConfig type="alphaNumeric" />
     </setting>
     <setting propertyKey="@Properties.bike" title="@Strings.settings_bike">
         <settingConfig type="alphaNumeric" />
+    </setting>
+    <setting propertyKey="@Properties.screens" title="@Strings.settings_screens">
+        <settingConfig type="alphaNumeric" />
+    </setting>
+    <setting propertyKey="@Properties.is_gesture_enable" title="@Strings.settings_is_gesture_enable">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.is_auto_loop" title="@Strings.settings_is_auto_loop">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.loop_timer" title="@Strings.settings_loop_timer">
+        <settingConfig type="numeric" min="1" max="30"/>
+    </setting>
+    <setting propertyKey="@Properties.is_als_enable" title="@Strings.settings_is_als_enable">
+        <settingConfig type="boolean" />
     </setting>
 </settings>
