@@ -324,6 +324,8 @@ At the time of this [edit 1](#EDIT2) they are:
 - fenix7spro
 - fenix7x
 - fenix7xpro
+- fr165m
+- fr165
 - fr245m
 - fr255
 - fr255m

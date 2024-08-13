@@ -181,6 +181,7 @@ function updateFields() as Void {
     if ($.tempo_off == 0) {
         return;
     }
+    $.sdk.flushCmdStackingIfSup(200);
     $.sdk.holdGraphicEngine();
     for (var i = 0; i < after; i++) {
         var asStr = Layouts.get($.currentLayouts[i]);

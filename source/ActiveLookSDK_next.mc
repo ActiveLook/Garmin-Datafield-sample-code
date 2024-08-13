@@ -108,7 +108,7 @@ module ActiveLookSDK {
     var time = null;    var clearError = null;
     var timeHError = null; var timeMError = null;
     var battery = null; var batteryError = null;
-    var rawcmd = null;  var rawcmdError = null;
+    var cmdStacking = null;
     var ble = null;     var listener = null;
 
     var _cbCharacteristicWrite   = null;
@@ -161,7 +161,7 @@ module ActiveLookSDK {
         }
         function resyncGlasses() {
             _log("resyncGlasses", []);
-            if (rawcmdError != null)  { self.sendRawCmd([]b); }
+            if (cmdStacking != null)  { self.sendRawCmd([]b); }
             if (clearError == true) {
                 self.clearScreen();
             }
@@ -355,30 +355,63 @@ module ActiveLookSDK {
 
         function sendRawCmd(buffer) {
             var bufferToSend = []b;
-            if (rawcmdError != null) {
-                bufferToSend.addAll(rawcmdError);
-                rawcmdError = null;
+            if (cmdStacking != null) {
+                bufferToSend.addAll(cmdStacking);
+                cmdStacking = null;
             }
             bufferToSend.addAll(buffer);
             _log("sendRawCmdBufferSize", [bufferToSend.size()]);
             try {
                 if (bufferToSend.size() > 20) {
                     var sendNow = bufferToSend.slice(0, 20);
-                    rawcmdError = bufferToSend.slice(20, null);
+                    cmdStacking = bufferToSend.slice(20, null);
                     _cbCharacteristicWrite = self.method(:__onWrite_finishPayload);
                     ble.getBleCharacteristicActiveLookRx()
                         .requestWrite(sendNow, {:writeType => BluetoothLowEnergy.WRITE_TYPE_WITH_RESPONSE});
-                    _log("sendRawCmd",[arrayToHex(sendNow)]);
+                    _log("cmdSended",[arrayToHex(sendNow)]);
                 } else if (bufferToSend.size() > 0) {
                     ble.getBleCharacteristicActiveLookRx()
                         .requestWrite(bufferToSend, {:writeType => BluetoothLowEnergy.WRITE_TYPE_WITH_RESPONSE});
-                    _log("sendRawCmd",[arrayToHex(bufferToSend)]);
+                    _log("cmdSended",[arrayToHex(bufferToSend)]);
                 }
             } catch (e) {
-                rawcmdError = bufferToSend; rawcmd = null;
+                cmdStacking = bufferToSend;
                 onBleError(e);
             }
 		}
+
+        function indexIncompleteCmd(){
+            if(cmdStacking){
+                _log("indexIncompleteCmd",[arrayToHex(cmdStacking)]);
+                for(var i = 0; i < cmdStacking.size(); i++) {
+                    if(cmdStacking[i] == 0xAA){
+                        if(cmdStacking.size() > i + 1){
+                            if(cmdStacking[i+1] == 0xFF){
+                                return i+1;
+                            }
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+
+        function flushCmdStacking(){
+            _log("flushCmdStacking",[cmdStacking == null ? 0 : cmdStacking.size()]);
+            var indexIncompleteCmd = indexIncompleteCmd() as Toybox.Lang.Number;
+            cmdStacking = indexIncompleteCmd != 0 ? cmdStacking.slice(null, indexIncompleteCmd) : null ;
+            self.resetGraphicEngine();
+            _log("flushCmdStacking",[cmdStacking == null ? 0 : arrayToHex(cmdStacking)]);
+        }
+
+        function flushCmdStackingIfSup(value as Toybox.Lang.Number){
+            if(cmdStacking != null){
+                if(cmdStacking.size() > 200){
+                    _log("flushCmdStackingIfSup",[value,cmdStacking == null ? 0 : cmdStacking.size()]);
+                    flushCmdStacking();
+                }
+            }
+        }
 
         function resetLayouts(args) {
             var newBuffers = [];
@@ -570,7 +603,7 @@ module ActiveLookSDK {
         function tearDownDevice() as Void {
             _log("tearDownDevice", [ActiveLookSDK.device]);
             time = null;
-            rawcmd = null;  rawcmdError = null;
+            cmdStacking = null;
             var newBuffers = [];
             var newValues = [];
             for (var i = 0; i < layouts.size(); i ++) {
@@ -616,6 +649,7 @@ module ActiveLookSDK {
                     if (value[0] != 0x01) {
                         _log("onCharacteristicChanged", ["Expecting gesture value 0x01", value]);
                     }
+                    self.flushCmdStacking();
                     listener.onGestureEvent();
                     break;
                 }
