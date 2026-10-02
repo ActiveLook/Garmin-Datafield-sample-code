@@ -229,6 +229,22 @@ class DataFieldDrawable extends WatchUi.Drawable {
     }
 }
 
+class TapDelegate extends WatchUi.BehaviorDelegate {
+
+    function initialize() {
+        BehaviorDelegate.initialize();
+    }
+
+    function onTap(tapEvent as WatchUi.ClickEvent) as Lang.Boolean {
+        log("tapEvent", [tapEvent.getType()]);
+        if (tapEvent.getType() == WatchUi.CLICK_TYPE_TAP) {
+            $.swipe = true;
+            return true;
+        }
+        return false;
+    }
+}
+
 (:typecheck(false))
 class ActiveLookDataFieldView extends WatchUi.DataField {
 
